@@ -43,8 +43,12 @@ g++ --version
 ```cmd
 cd C:\Users\samue\OneDrive\Escritorio\LenguajesFormales
 ```
-
 - **Linux/macOS example:**  
 ```bash
 cd /home/samue/Escritorio/LenguajesFormales
+```
+### 4. Compile the Program
+
+```bash
+eliminacion.exe < entrada.txt
 ```
