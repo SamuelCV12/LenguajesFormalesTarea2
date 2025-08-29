@@ -1,4 +1,4 @@
-# Algorithms to Eliminate Left-recursion
+# Algorithm to Eliminate Left-recursion
 
 ## Samuel Correa Velasquez — Class # 5730  
 ## Thomas Bedoya Rendon — Class # 5730
@@ -77,7 +77,10 @@ A -> cY
 Z -> aZ e
 Y -> cY bZcY e
 ```
+---
+### 7. Algorithm to Eliminate Left-recursion Explanation
 
+---
 ## References
 1. **Pdf:** 
    - Explanation of the homework(https://drive.google.com/file/d/1P2XtygCCF8CkqCuAXUK-2dTonKUYhyZH/view?usp=sharing)
