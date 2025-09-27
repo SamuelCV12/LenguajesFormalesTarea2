@@ -80,6 +80,78 @@ Y -> cY bZcY e
 ---
 ### 7. Algorithm to Eliminate Left-recursion Explanation
 
+This project implements an algorithm to eliminate left recursion from a context-free grammar (CFG).
+
+Left recursion is a situation where a non-terminal symbol in a grammar can derive itself as the first symbol on the right-hand side, which makes some parsing algorithms (like recursive descent) enter infinite loops.
+
+Example:
+
+A → Aα | β
+
+
+is left-recursive because A immediately calls itself.
+
+This program transforms such grammars into an equivalent form without left recursion.
+
+How the Code Works
+1. Grammar Representation (struct Grammar)
+
+prod: a mapping from a non-terminal (like A) to its list of productions (A → α1 | α2 | ...).
+
+order: keeps track of the order in which non-terminals are processed.
+
+used: keeps track of which non-terminals are already in use (to avoid duplicates when creating new symbols).
+
+2. Choosing a New Non-Terminal
+char nextNonTerminal(set<char>& usados)
+
+
+Finds an unused uppercase letter (Z → A) to create a fresh non-terminal when we need to rewrite a rule.
+
+Throws an error if no letters are left.
+
+3. Eliminating Immediate Left Recursion
+void eliminateImmediateLeftRecursion(char A, Grammar& G)
+
+
+Splits the productions of a non-terminal A into:
+
+α (alpha): productions where A appears immediately (e.g., A → Aα).
+
+β (beta): productions that do not start with A.
+
+If left recursion exists, it rewrites as:
+
+A → βA'
+A' → αA' | ε
+
+
+where A' is a new non-terminal and ε is the empty string (e in this code).
+
+4. Eliminating General Left Recursion
+void eliminateLeftRecursion(Grammar& G)
+
+
+Iterates through all non-terminals in the given order.
+
+For each pair (Ai, Aj) with j < i, it substitutes indirect recursion (when Ai → Ajγ).
+
+After substitution, it calls eliminateImmediateLeftRecursion to clean up any direct recursion.
+
+This ensures the grammar is fully free of left recursion.
+
+5. Main Function
+
+Reads n test cases.
+
+For each case:
+
+Reads grammar rules (lhs → rhs1 rhs2 ...).
+
+Calls eliminateLeftRecursion.
+
+Prints the transformed grammar.
+
 ---
 ## References
 1. **Pdf:** 
